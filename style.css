@@ -92,14 +92,14 @@ header h1{
     font-size: 20px;
 }
 
-.list-item #remove{
+.list-item .remove{
     background: none;
     border: none;
     color: white;
     
 }
 
-.list-item #remove svg{
+.list-item .remove svg{
     height: 25px;
     width: 25px;
     cursor: pointer;
@@ -107,6 +107,6 @@ header h1{
 }
 
 
-.list-item #remove:hover .fillRed{
+.list-item .remove:hover .fillRed{
     fill: red;
 }

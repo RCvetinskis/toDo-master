@@ -29,8 +29,6 @@ if(list.length){
     }
 }
 
-
-
 add.addEventListener("click", function(){
 var text = input.value
 if(text){
@@ -57,32 +55,34 @@ function populate(text){
         newList.innerHTML =
         `
         <div class="text">${text}</div>
-        <button id="remove" id ="remove">${removeSvg} </button>
+        <button class="remove">${removeSvg} </button>
         
         `
         toDo.prepend(newList)
-
+          
         // removes element
-        //   Get index and remove from memorylist
-        var remove = document.getElementById("remove")
-        remove.addEventListener("click",function(){
-            var todo_index = 0
-            var parentNode = this.parentNode
-            while(parentNode.previousSibling != null){
-                todo_index++
-                parentNode = parentNode.previousSibling
-            }
-                 
-        //  removes list item from memory list and localstorage
-        memoryList.reverse().splice(todo_index,1)
-        localStorage.setItem("memoryList", memoryList.reverse())
-         console.log(memoryList)
-        // Removes parent element
-        this.parentNode.remove()
-               
+       remove(newList)
+}
 
-        })
-     
-    
+function remove(newList){
+    //   Get index and remove from memorylist
+    var remove = newList.querySelector(".remove")
+    remove.addEventListener("click",function(){
+        var index = 0
+        var parentNode = this.parentNode
+        while(parentNode.previousSibling != null){
+            todo_index++
+            parentNode = parentNode.previousSibling
+        }
+             
+    //  removes list item from memory list and localstorage
+    memoryList.reverse().splice(index,1)
+    localStorage.setItem("memoryList", memoryList.reverse())
+
+    // Removes parent element
+    this.parentNode.remove()
+           
+
+    })
 }
 
