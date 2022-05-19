@@ -21,7 +21,7 @@ var memoryList = []
 
 // Pirmas uzkrovimas
 var list = localStorage.getItem("memoryList")
-if(list.length){
+if(list){
     memoryList = list.split(",")
     toDo.innerHTML = ""
     for(var x of memoryList){
