@@ -30,18 +30,13 @@ if(list.length){
 }
 
 
-// Istrinymui funkcija
-removeEl()
-
-
 
 add.addEventListener("click", function(){
 var text = input.value
 if(text){
   populate(text)
 
-    // Remove funkcija naujiems mygutkams
-    removeEl()
+
     // Prideda i memoryList
     memoryList.push(text)
     console.log(memoryList)
@@ -53,16 +48,7 @@ if(text){
 }
 })
 
-function removeEl(){
-    var removeBtns =   toDo.querySelectorAll("button")
-    for(var x of removeBtns){
-        x.addEventListener("click", function(){
-            this.parentNode.remove()
-        })
 
-    }
-    
-}
 
 function populate(text){
         // Create new list element
@@ -71,8 +57,32 @@ function populate(text){
         newList.innerHTML =
         `
         <div class="text">${text}</div>
-        <button id="remove">${removeSvg} </button>
+        <button id="remove" id ="remove">${removeSvg} </button>
         
         `
         toDo.prepend(newList)
+
+        // removes element
+        //   Get index and remove from memorylist
+        var remove = document.getElementById("remove")
+        remove.addEventListener("click",function(){
+            var todo_index = 0
+            var parentNode = this.parentNode
+            while(parentNode.previousSibling != null){
+                todo_index++
+                parentNode = parentNode.previousSibling
+            }
+                 
+        //  removes list item from memory list and localstorage
+        memoryList.reverse().splice(todo_index,1)
+        localStorage.setItem("memoryList", memoryList.reverse())
+         console.log(memoryList)
+        // Removes parent element
+        this.parentNode.remove()
+               
+
+        })
+     
+    
 }
+
