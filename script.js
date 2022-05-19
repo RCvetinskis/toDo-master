@@ -29,6 +29,7 @@ if(list.length){
     }
 }
 
+// Mouse click
 add.addEventListener("click", function(){
 var text = input.value
 if(text){
@@ -45,6 +46,24 @@ if(text){
     input.value= ""
 }
 })
+// enter click
+document.addEventListener("keypress", function(e){
+    if(e.key != "Enter") return
+    var text = input.value
+    if(text){
+      populate(text)
+    
+
+        // Prideda i memoryList
+        memoryList.push(text)
+        console.log(memoryList)
+        // prideda i localStorage
+        localStorage.setItem("memoryList",memoryList)
+    
+        // Isvalo input
+        input.value= ""
+    }
+    })
 
 
 
